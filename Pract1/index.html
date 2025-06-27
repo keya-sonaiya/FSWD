@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vote for Your Favorite Language</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Vote for Your Favorite Language</h1>
+    
+    <div class="buttons">
+      <button onclick="vote('JavaScript')">JavaScript</button>
+      <button onclick="vote('Python')">Python</button>
+      <button onclick="vote('Java')">Java</button>
+    </div>
+
+    <div class="results">
+      <p>JavaScript: <span id="js-count">0</span></p>
+      <p>Python: <span id="py-count">0</span></p>
+      <p>Java: <span id="java-count">0</span></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
