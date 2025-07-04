@@ -1,0 +1,65 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-background {
+  height: 100vh;
+  background: linear-gradient(to right, #e3f2fd, #fce4ec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main card */
+.main-card {
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  text-align: center;
+}
+
+/* Welcome text */
+.welcome-text {
+  font-size: 2.2rem;
+  color: #0d47a1;
+  margin-bottom: 30px;
+}
+
+/* Container for info rows */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Reusable info row */
+.info-row {
+  background-color: #bbdefb;
+  color: #0d3a7e;
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  width: 250px;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.value {
+  font-weight: bold;
+}
