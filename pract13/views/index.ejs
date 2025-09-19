@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tax Form</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+    button {
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error {
+      color: #d9534f;
+      background: #fbeaea;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Your Income</h2>
+    <% if (error) { %>
+      <div class="error"><%= error %></div>
+    <% } %>
+    <form action="/calculate" method="POST">
+      <div>
+        <label>Income Source 1:</label>
+        <input type="text" name="income1" required>
+      </div>
+      <div>
+        <label>Income Source 2:</label>
+        <input type="text" name="income2" required>
+      </div>
+      <button type="submit">Calculate Total</button>
+    </form>
+  </div>
+</body>
+</html>

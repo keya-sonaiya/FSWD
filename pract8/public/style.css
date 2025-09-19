@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f0f2f5;
+}
+
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 300px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #333;
+}
+
+.counter-display {
+  font-size: 3em;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 70px;
+}
+
+button.increment {
+  background: #28a745;
+  color: white;
+}
+
+button.decrement {
+  background: #dc3545;
+  color: white;
+}
+
+button.reset {
+  background: #ffc107;
+  color: black;
+}
+
+button:hover {
+  opacity: 0.9;
+}

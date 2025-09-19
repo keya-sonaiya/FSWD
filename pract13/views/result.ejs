@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Total Income</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin: 8px 0;
+      color: #333;
+    }
+    strong {
+      color: #000;
+    }
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      color: #28a745;
+      margin-top: 15px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    a:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Total Income</h2>
+    <p><strong>Income Source 1:</strong> <%= income1 %></p>
+    <p><strong>Income Source 2:</strong> <%= income2 %></p>
+    <p class="total">Total Income: <%= total %></p>
+    <a href="/">← Go Back</a>
+  </div>
+</body>
+</html>
