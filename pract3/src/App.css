@@ -1,4 +1,4 @@
-/* Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +17,6 @@ body {
   align-items: center;
 }
 
-/* Main card */
 .main-card {
   background-color: #ffffff;
   padding: 40px 50px;
@@ -27,21 +26,18 @@ body {
   text-align: center;
 }
 
-/* Welcome text */
 .welcome-text {
   font-size: 2.2rem;
   color: #0d47a1;
   margin-bottom: 30px;
 }
 
-/* Container for info rows */
 .info-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Reusable info row */
 .info-row {
   background-color: #bbdefb;
   color: #0d3a7e;

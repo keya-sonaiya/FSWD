@@ -1,4 +1,4 @@
-// Hardcoded weather data
+
 const weatherData = {
   "Mumbai": "32°C, Humid",
   "Delhi": "35°C, Sunny",
@@ -7,7 +7,6 @@ const weatherData = {
   "Tokyo": "27°C, Clear Skies"
 };
 
-// Handle button click
 document.getElementById('get-weather').addEventListener('click', () => {
   const city = document.getElementById('city-input').value.trim();
   const resultDiv = document.getElementById('weather-result');
