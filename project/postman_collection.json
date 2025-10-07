@@ -1,0 +1,572 @@
+{
+  "info": {
+    "name": "EduMosaic API",
+    "description": "Complete API collection for the EduMosaic learning platform",
+    "version": "1.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://your-project.supabase.co",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "your-anon-key",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/v1/signup",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "v1", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/v1/token?grant_type=password",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "v1", "token"],
+              "query": [
+                {
+                  "key": "grant_type",
+                  "value": "password"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/v1/user",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "v1", "user"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profiles",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/rest/v1/profiles?id=eq.{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "profiles"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{user_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Name\",\n  \"bio\": \"Updated bio\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/profiles?id=eq.{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "profiles"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{user_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/rest/v1/courses?select=*,instructor:profiles!courses_instructor_id_fkey(id,name,avatar_url),category:categories(id,name,slug),enrollments(id)&is_published=eq.true",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "courses"],
+              "query": [
+                {
+                  "key": "select",
+                  "value": "*,instructor:profiles!courses_instructor_id_fkey(id,name,avatar_url),category:categories(id,name,slug),enrollments(id)"
+                },
+                {
+                  "key": "is_published",
+                  "value": "eq.true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Course by Slug",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/rest/v1/courses?select=*,instructor:profiles!courses_instructor_id_fkey(id,name,avatar_url,bio),category:categories(id,name,slug),sections:course_sections(id,title,content,order_index),enrollments(id,student_id)&slug=eq.react-fundamentals&is_published=eq.true",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "courses"],
+              "query": [
+                {
+                  "key": "select",
+                  "value": "*,instructor:profiles!courses_instructor_id_fkey(id,name,avatar_url,bio),category:categories(id,name,slug),sections:course_sections(id,title,content,order_index),enrollments(id,student_id)"
+                },
+                {
+                  "key": "slug",
+                  "value": "eq.react-fundamentals"
+                },
+                {
+                  "key": "is_published",
+                  "value": "eq.true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"React Fundamentals\",\n  \"description\": \"Learn the basics of React development\",\n  \"short_description\": \"A comprehensive introduction to React\",\n  \"category_id\": \"category-uuid\",\n  \"level\": \"beginner\",\n  \"price\": 99.00,\n  \"tags\": [\"react\", \"javascript\", \"frontend\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/courses",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Advanced React Fundamentals\",\n  \"price\": 129.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/courses?id=eq.{{course_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "courses"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{course_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Course",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/rest/v1/courses?id=eq.{{course_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "courses"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{course_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments",
+      "item": [
+        {
+          "name": "Enroll in Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": \"{{course_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/enrollments",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "enrollments"]
+            }
+          }
+        },
+        {
+          "name": "Get Student Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/rest/v1/enrollments?select=*,course:courses(id,title,slug,short_description,image_url,level,instructor:profiles!courses_instructor_id_fkey(name))&status=eq.active",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "enrollments"],
+              "query": [
+                {
+                  "key": "select",
+                  "value": "*,course:courses(id,title,slug,short_description,image_url,level,instructor:profiles!courses_instructor_id_fkey(name))"
+                },
+                {
+                  "key": "status",
+                  "value": "eq.active"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Progress",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"progress\": 75\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/enrollments?id=eq.{{enrollment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "enrollments"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{enrollment_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Course Sections",
+      "item": [
+        {
+          "name": "Create Course Section",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\": \"{{course_id}}\",\n  \"title\": \"Introduction to Components\",\n  \"content\": \"Learn about React components and how to create them\",\n  \"order_index\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/course_sections",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "course_sections"]
+            }
+          }
+        },
+        {
+          "name": "Update Course Section",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Advanced Components\",\n  \"content\": \"Deep dive into React component patterns\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/rest/v1/course_sections?id=eq.{{section_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "course_sections"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "eq.{{section_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/rest/v1/categories?order=name",
+              "host": ["{{base_url}}"],
+              "path": ["rest", "v1", "categories"],
+              "query": [
+                {
+                  "key": "order",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "File Upload",
+      "item": [
+        {
+          "name": "Upload Course Image",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "apikey",
+                "value": "{{api_key}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "path/to/image.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/storage/v1/object/course-images/{{filename}}",
+              "host": ["{{base_url}}"],
+              "path": ["storage", "v1", "object", "course-images", "{{filename}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -174,7 +174,7 @@ function LoginSignup() {
                 className="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Samad"
+                placeholder="your name"
               />
             </div>
           )}
